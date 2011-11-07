@@ -9,11 +9,12 @@
  *     public function action_index()
  *     {
  *         $this->tp->assign('some', 'value');
- *         $this->response->body($this->tp->fetch('welcome/index.php'));
+ *         $this->response->body($this->tp->fetch('welcome/index.htm'));
  *     }
  * }
  * </code>
  * 
+ * @package Kohana/AppSmarty
  * @author Dmitry Petukhov <dima@oscarweb.ru>
  */
 class Kohana_Controller_Smarty extends Controller {

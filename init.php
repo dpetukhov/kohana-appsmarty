@@ -10,17 +10,20 @@
  * includes the main Smarty.class.php file and removes itself from
  * the spl_autoload stack.
  * 
+ * @package Kohana/AppSmarty
  * @author Dmitry Petukhov <dima@oscarweb.ru>
- * 
  */
 function smarty_class_autoload($class_name)
-{   
-	if (strtolower($class_name) == 'smarty')
+{
+    $class_name = strtolower($class_name);
+    
+	if ($class_name == 'smarty' OR $class_name == 'smartybc')
 	{
-		$dir = Kohana::$config->load('smarty.smarty_dir');
+	    $dir = Kohana::$config->load('smarty.smarty_dir');
 		
-		// Include smarty class
-		include_once Kohana::find_file($dir, 'Smarty.class');
+		$file = ($class_name == 'smarty') ? 'Smarty' : 'SmartyBC';
+		
+		include_once Kohana::find_file($dir, $file.'.class');
 		
 		// We do not need this anymore
 		spl_autoload_unregister('smarty_class_autoload');

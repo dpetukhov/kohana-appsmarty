@@ -3,6 +3,7 @@
 /**
  * Configured smarty object for use in application
  * 
+ * @package Kohana/AppSmarty
  * @author Dmitry Petukhov <dima@oscarweb.ru>
  */
 class Kohana_AppSmarty extends Smarty {
