@@ -13,7 +13,7 @@ class Kohana_AppSmarty extends Smarty {
 		parent::__construct();
 		
 		/* @var $config Kohana_Config_Group */ 
-		$config = Kohana::$config->load('smarty');
+		$config = Kohana::config('smarty');
 		
 		$this
 			->setTemplateDir($config->get('template_dir'))

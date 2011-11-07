@@ -19,7 +19,7 @@ function smarty_class_autoload($class_name)
 	
 	if ($class_name == 'smarty' OR $class_name == 'smartybc')
 	{
-		$dir = Kohana::$config->load('smarty.smarty_dir');
+		$dir = Kohana::config('smarty.smarty_dir');
 		
 		$file = ($class_name == 'smarty') ? 'Smarty' : 'SmartyBC';
 		
