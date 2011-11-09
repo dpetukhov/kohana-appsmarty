@@ -1,0 +1,49 @@
+Smarty Template Engine for Kohana 3 PHP Framework
+
+If you've worked with smarty in a pure php, you will appreciate the simplicity
+and naturalness of way of using module.
+
+INSTALLATION
+
+1) Put the folder with the module in the modules directory.
+2) Add the path to the module into a Kohana::modules call in bootstrap.php:
+	'kohana-appsmarty' => MODPATH.'kohana-appsmarty',
+3) By default, I recommend to use folders APPPATH/templates for your templates
+and APPPATH/templates_c for compiled templates. If you are going to follow this
+advice, create the appropriate folders in APPPATH (templates_c should be
+writable). If not, create a file APPPATH/config/smarty.php and configure pathes
+the way you want.
+
+USAGE
+
+The main beauty of the module - an extensible controller Controller_Smarty.
+Just inherit your controllers from it and use an internal variable $this->tp:
+
+<?php
+class Controller_Welcome extends Controller_Smarty {
+	public function action_index()
+	{
+		$tp = $this->tp; // shorthand
+
+		$tp->assign('some', 'value');
+		$this->response->body($tp->fetch('welcome/index.tpl'));
+	}
+}
+?>
+
+Module sets the autoloader, so you can call a Smarty anywhere in the
+application:
+<?php
+	$smarty = new Smarty; //or SmartyBC
+?>
+
+Smarty object with a configured paths by configuration file:
+<?php
+	$smarty = new AppSmarty;
+?>
+
+UPDATING SMARTY
+
+To update Smarty, download the latest distribution from smarty.net, unpack and
+copy the contents of the lib folder in the directory vendor/smarty-3.xx
+in APPPATH or module dir. Then adjust in the config option smarty_dir.
